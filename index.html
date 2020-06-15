@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Dream Team</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 jumbotron text-center">
+        <h1>Your Dream Team</h1>
+        <p>Use the interactive charts below to explore the dataset</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-3">
+        <div class="well">
+          <h5>Players:</h5>
+          <select id="selDataset">
+
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-3">
+          <div class="info">
+            <h5>Player Info:</h5>
+            <div id="playerInfo">
+                <ul>
+
+                </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    <div class="row">
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Position</th>
+                    <th>Overall</th>
+                    <th>Potential</th>
+                </tr>
+            </thead>
+            <!-- from JS -->
+            <tbody></tbody>
+        </table>
+    </div>
+    <br><br><br>
+    <button id="add-GK" type="button" class="btn btn-default">Add as GK</button>
+    <button id="del-GK" type="button" class="btn btn-default">Del GK</button>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
+  
+  
+  <!-- React Import -->
+  <!-- <script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script> -->
+  
+  
+  <!-- <script src="https://cdn.plot.ly/plotly-latest.min.js"></script> -->
+  <script src="app.js"></script>
+
+</body>
+
+</html>
