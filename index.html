@@ -21,14 +21,22 @@
     <div class="row">
       <div class="col-lg-3">
         <div class="well">
-          <h5>Goalies:</h5>
-          <select id="selDatasetGK"></select>
+          <h5>Goalkeepers:</h5>
+          <select class = "selection" id="selDatasetGK">
+            <option value="Null" selected>Choose Player</option>
+          </select>
           <h5>Defenders:</h5>
-          <select id="selDatasetDEF"></select>
+          <select class = "selection" id="selDatasetDEF">
+            <option value="Null" selected>Choose Player</option>
+          </select>
           <h5>Midfielders:</h5>
-          <select id="selDatasetMID"></select>
+          <select class = "selection" id="selDatasetMID">
+            <option value="Null" selected>Choose Player</option>
+          </select>
           <h5>Forwards:</h5>
-          <select id="selDatasetFWD"></select>
+          <select class = "selection" id="selDatasetFWD">
+            <option value="Null" selected>Choose Player</option>
+          </select>
         </div>
       </div>
     </div>
@@ -47,26 +55,60 @@
     <div class="row">
         <table>
             <thead>
-                <tr>
-                    <th>Age</th>
-                    <th>Club</th>
-                    <th>Height</th>
-                    <th>Name</th>
-                    <th>Nationality</th>
-                    <th>Overall</th>
-                    <!-- <th>Position</th> -->
-                    <th>Potential</th>
-                    <th>Value</th>
-                    <th>Weight</th>
-                </tr>
+              <tr>
+                <th>Team Position</th>
+                <th>Age</th>
+                <th>Club</th>
+                <th>Height</th>
+                <th>Name</th>
+                <th>Nationality</th>
+                <th>Overall</th>
+                <th>Position</th>
+                <th>Potential</th>
+                <th>Value</th>
+                <th>Weight</th>
+              </tr>
             </thead>
-            <!-- from JS -->
-            <tbody></tbody>
+            <tbody>
+              <tr id="GK">
+                <td>GK</td>
+              </tr>
+              <tr id="DEF1">
+                <td>DEF1</td>
+              </tr>
+              <tr id="DEF2">
+                <td>DEF2</td>
+              </tr>
+              <tr id="DEF3">
+                <td>DEF3</td>
+              </tr>
+              <tr id="DEF4">
+                <td>DEF4</td>
+              </tr>
+              <tr id="MID1">
+                <td>MID1</td>
+              </tr>
+              <tr id="MID2">
+                <td>MID2</td>
+              </tr>
+              <tr id="MID3">
+                <td>MID3</td>
+              </tr>
+              <tr id="MID4">
+                <td>MID4</td>
+              </tr>
+              <tr id="FWD1">
+                <td>FWD1</td>
+              </tr>
+              <tr id="FWD2">
+                <td>FWD2</td>
+              </tr>
+            </tbody>
         </table>
     </div>
     <br><br><br>
-    <button id="add-GK" type="button" class="btn btn-default">Add a Midfielder</button>
-    <button id="del-GK" type="button" class="btn btn-default">Clear</button>
+    <button id="add-GK" type="button" class="btn btn-default">Add as GK</button>
+    <button id="del-GK" type="button" class="btn btn-default">Del GK</button>
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
@@ -77,7 +119,7 @@
   
   
   <!-- <script src="https://cdn.plot.ly/plotly-latest.min.js"></script> -->
-  <script src="app1.js"></script>
+  <script src="app2.js"></script>
 
 </body>
 
