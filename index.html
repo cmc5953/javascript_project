@@ -21,10 +21,14 @@
     <div class="row">
       <div class="col-lg-3">
         <div class="well">
-          <h5>Players:</h5>
-          <select id="selDataset">
-
-          </select>
+          <h5>Goalies:</h5>
+          <select id="selDatasetGK"></select>
+          <h5>Defenders:</h5>
+          <select id="selDatasetDEF"></select>
+          <h5>Midfielders:</h5>
+          <select id="selDatasetMID"></select>
+          <h5>Forwards:</h5>
+          <select id="selDatasetFWD"></select>
         </div>
       </div>
     </div>
@@ -44,10 +48,16 @@
         <table>
             <thead>
                 <tr>
+                    <th>Age</th>
+                    <th>Club</th>
+                    <th>Height</th>
                     <th>Name</th>
-                    <th>Position</th>
+                    <th>Nationality</th>
                     <th>Overall</th>
+                    <!-- <th>Position</th> -->
                     <th>Potential</th>
+                    <th>Value</th>
+                    <th>Weight</th>
                 </tr>
             </thead>
             <!-- from JS -->
@@ -55,8 +65,8 @@
         </table>
     </div>
     <br><br><br>
-    <button id="add-GK" type="button" class="btn btn-default">Add as GK</button>
-    <button id="del-GK" type="button" class="btn btn-default">Del GK</button>
+    <button id="add-GK" type="button" class="btn btn-default">Add a Midfielder</button>
+    <button id="del-GK" type="button" class="btn btn-default">Clear</button>
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
@@ -67,7 +77,7 @@
   
   
   <!-- <script src="https://cdn.plot.ly/plotly-latest.min.js"></script> -->
-  <script src="app.js"></script>
+  <script src="app1.js"></script>
 
 </body>
 
