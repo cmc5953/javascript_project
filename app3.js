@@ -104,9 +104,9 @@ for(let i = 0; i < posArr.length; i++){
                 cell.text(skill);
                 spider_dict[pos][attribute] = skill;
             })
+            pieBuilder();
+            spiderBuilder();
         }
-        pieBuilder();
-        spiderBuilder();
     };
 }
 
