@@ -105,6 +105,8 @@ for(let i = 0; i < posArr.length; i++){
                 spider_dict[pos][attribute] = skill;
             })
         }
+        pieBuilder();
+        spiderBuilder();
     };
 }
 
@@ -216,36 +218,32 @@ d3.selectAll("#selDatasetFWD").on("change", getDataFunctions["#selDatasetFWD"]);
 // BUTTON EVENTS
 
 // Select the goalkeeper's add button and create the event handler for a click
-d3.select("#add-GK").on("click", () => {
-    addFunctions["GK"](); 
-    spiderBuilder(); 
-    pieBuilder();
-});
+d3.select("#add-GK").on("click", addFunctions["GK"]);
 
 // Select the goalkeeper's delete button and create the event handler for a click
-d3.select("#del-GK").on("click", () => {delFunctions["GK"](); spiderBuilder(); pieBuilder();});
+d3.select("#del-GK").on("click", delFunctions["GK"]);
 
 // ETC.
-d3.select("#add-DEF1").on("click", () => {addFunctions["DEF1"](); spiderBuilder(); pieBuilder();});
-d3.select("#del-DEF1").on("click",  () => {delFunctions["DEF1"](); spiderBuilder(); pieBuilder();});
-d3.select("#add-DEF2").on("click",  () => {addFunctions["DEF2"](); spiderBuilder(); pieBuilder();});
-d3.select("#del-DEF2").on("click",  () => {delFunctions["DEF2"](); spiderBuilder(); pieBuilder();});
-d3.select("#add-DEF3").on("click",  () => {addFunctions["DEF3"](); spiderBuilder(); pieBuilder();});
-d3.select("#del-DEF3").on("click",  () => {delFunctions["DEF3"](); spiderBuilder(); pieBuilder();});
-d3.select("#add-DEF4").on("click",  () => {addFunctions["DEF4"](); spiderBuilder(); pieBuilder();});
-d3.select("#del-DEF4").on("click",  () => {delFunctions["DEF4"](); spiderBuilder(); pieBuilder();});
-d3.select("#add-MID1").on("click",  () => {addFunctions["MID1"](); spiderBuilder(); pieBuilder();});
-d3.select("#del-MID1").on("click",  () => {delFunctions["MID1"](); spiderBuilder(); pieBuilder();});
-d3.select("#add-MID2").on("click",  () => {addFunctions["MID2"](); spiderBuilder(); pieBuilder();});
-d3.select("#del-MID2").on("click",  () => {delFunctions["MID2"](); spiderBuilder(); pieBuilder();});
-d3.select("#add-MID3").on("click",  () => {addFunctions["MID3"](); spiderBuilder(); pieBuilder();});
-d3.select("#del-MID3").on("click",  () => {delFunctions["MID3"](); spiderBuilder(); pieBuilder();});
-d3.select("#add-MID4").on("click",  () => {addFunctions["MID4"](); spiderBuilder(); pieBuilder();});
-d3.select("#del-MID4").on("click",  () => {delFunctions["MID4"](); spiderBuilder(); pieBuilder();});
-d3.select("#add-FWD1").on("click",  () => {addFunctions["FWD1"](); spiderBuilder(); pieBuilder();});
-d3.select("#del-FWD1").on("click",  () => {delFunctions["FWD1"](); spiderBuilder(); pieBuilder();});
-d3.select("#add-FWD2").on("click",  () => {addFunctions["FWD2"](); spiderBuilder(); pieBuilder();});
-d3.select("#del-FWD2").on("click",  () => {delFunctions["FWD2"](); spiderBuilder(); pieBuilder();});
+d3.select("#add-DEF1").on("click", addFunctions["DEF1"]);
+d3.select("#del-DEF1").on("click", delFunctions["DEF1"]);
+d3.select("#add-DEF2").on("click", addFunctions["DEF2"]);
+d3.select("#del-DEF2").on("click", delFunctions["DEF2"]);
+d3.select("#add-DEF3").on("click", addFunctions["DEF3"]);
+d3.select("#del-DEF3").on("click", delFunctions["DEF3"]);
+d3.select("#add-DEF4").on("click", addFunctions["DEF4"]);
+d3.select("#del-DEF4").on("click", delFunctions["DEF4"]);
+d3.select("#add-MID1").on("click", addFunctions["MID1"]);
+d3.select("#del-MID1").on("click", delFunctions["MID1"]);
+d3.select("#add-MID2").on("click", addFunctions["MID2"]);
+d3.select("#del-MID2").on("click", delFunctions["MID2"]);
+d3.select("#add-MID3").on("click", addFunctions["MID3"]);
+d3.select("#del-MID3").on("click", delFunctions["MID3"]);
+d3.select("#add-MID4").on("click", addFunctions["MID4"]);
+d3.select("#del-MID4").on("click", delFunctions["MID4"]);
+d3.select("#add-FWD1").on("click", addFunctions["FWD1"]);
+d3.select("#del-FWD1").on("click", delFunctions["FWD1"]);
+d3.select("#add-FWD2").on("click", addFunctions["FWD2"]);
+d3.select("#del-FWD2").on("click", delFunctions["FWD2"]);
 
 // Run that bitch
 fetch_all(init);
