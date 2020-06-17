@@ -117,56 +117,54 @@ for(let i = 0; i < posArr.length; i++){
     };
 }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// SPIDER PLOT FUNCTION /////////////////////////////////////////////////////////////////////////////////////
 function spiderBuilder(){
-    var positions = [" FWD"," MID", " DEF", " GK"]
-    overall_list = []
-    positions.forEach(
-        function(position, index) {
-            var total = 0
-            position_list = Object.values(spider_dict).filter(row => row.Position === position)
-        console.log(total)
-        if (position_list.length > 0) 
-            {
-                for (var i = 0; i < position_list.length; i++) {
-                    total  += parseInt(position_list[i].Overall);
-                }
-                overall_avg = total / position_list.length;
+    var positions = [" FWD"," MID", " DEF", " GK"];
+    overall_list = [];
+    positions.forEach(position => {
+        var total = 0
+        position_list = Object.values(spider_dict).filter(row => row.Position === position)
+        if (position_list.length > 0) {
+            for (var i = 0; i < position_list.length; i++) {
+                total  += parseInt(position_list[i].Overall);
             }
-        else {overall_avg = 0}
-        // console.log(overall_avg)
-        overall_list.push(overall_avg)
+            overall_avg = total / position_list.length;
+            } else {
+            overall_avg = 0
+            }
+            overall_list.push(overall_avg)
         }
-    )
-    console.log (overall_list)
-    var potential_spider = Object.values(spider_dict).filter(row => row.Potential);
-    // console.log(potential_spider)
-    var potential_total = 0
-    for (var i = 0; i < potential_spider.length; i++) {
-        potential_total  += parseInt(potential_spider[i].Potential);
-      }
-    potential_average = potential_total / potential_spider.length;
-    // console.log(potential_average)
-    overall_list.push(potential_average)
-    // console.log(overall_list)
+    );
+    
+    var potential = Object.values(spider_dict).filter(row => row.Potential);
+    var potential_total = 0;
+    for (var i = 0; i < potential.length; i++) {
+        potential_total  += parseInt(potential[i].Potential);
+    }
+    potential_average = potential_total / potential.length;
+    overall_list.push(potential_average);
+    
     data = [{
         type: 'scatterpolar',
         r: overall_list,
         theta: ["FWD","MID", "DEF", "GK", "Potential",],
         fill: 'toself'
-      }]
-      layout = {
+    }];
+    
+    layout = {
         polar: {
-          radialaxis: {
-            visible: true,
-            range: [0, 100]
-        }
+            radialaxis: {
+                visible: true,
+                range: [0, 100]
+            }
         },
         showlegend: false,
-      }
-     Plotly.newPlot("spider-plot", data, layout)
-    }
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    };
+    
+    Plotly.newPlot("spider-plot", data, layout);
+};
+
+// DOUGHNUT PLOT FUNCTION /////////////////////////////////////////////////////////////////////////////////////
 function pieBuilder() {
     var budget = 400;
     var names =[];
@@ -192,21 +190,18 @@ function pieBuilder() {
         var plot = d3.select("#pie-plot");
         plot.html("")
         Plotly.newPlot("pie-plot", pie_trace, layout);
-    }
-    else {
+    } else {
         var plot = d3.select("#pie-plot");
         plot.html("")
         plot.text("You Have Exceeded your Budget. Tsk. Tsk.")
     }
 }
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
 
 // EVENTS
 //▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔
 
 // DROPDOWN EVENTS
+
 // When the user selects a new player from any of the dropdowns,
 // we call getData() which will populate the information table
 d3.selectAll("#selDatasetGK").on("change", getDataFunctions["#selDatasetGK"]);
@@ -214,100 +209,40 @@ d3.selectAll("#selDatasetDEF").on("change", getDataFunctions["#selDatasetDEF"]);
 d3.selectAll("#selDatasetMID").on("change", getDataFunctions["#selDatasetMID"]);
 d3.selectAll("#selDatasetFWD").on("change", getDataFunctions["#selDatasetFWD"]);
 
+
 // BUTTON EVENTS
+
 // Select the goalkeeper's add button and create the event handler for a click
-d3.select("#add-GK").on("click", () => {addFunctions["GK"]();
-                                          spiderBuilder();
-                                          pieBuilder();
+d3.select("#add-GK").on("click", () => {
+    addFunctions["GK"](); 
+    spiderBuilder(); 
+    pieBuilder();
 });
 
 // Select the goalkeeper's delete button and create the event handler for a click
-d3.select("#del-GK").on("click", () => {delFunctions["GK"]();
-                                          spiderBuilder();
-                                          pieBuilder();
-});
+d3.select("#del-GK").on("click", () => {delFunctions["GK"](); spiderBuilder(); pieBuilder();});
 
 // ETC.
-d3.select("#add-DEF1").on("click", () => {addFunctions["DEF1"]();
-                                          spiderBuilder();
-                                          pieBuilder();
-});
-d3.select("#del-DEF1").on("click",  () => {delFunctions["DEF1"]();
-                                          spiderBuilder();
-                                          pieBuilder();
-});
-d3.select("#add-DEF2").on("click",  () => {addFunctions["DEF2"]();
-                                          spiderBuilder();
-                                          pieBuilder();
-});
-d3.select("#del-DEF2").on("click",  () => {delFunctions["DEF2"]();
-                                          spiderBuilder();
-                                          pieBuilder();
-});
-d3.select("#add-DEF3").on("click",  () => {addFunctions["DEF3"]();
-                                          spiderBuilder();
-                                          pieBuilder();
-});
-d3.select("#del-DEF3").on("click",  () => {delFunctions["DEF3"]();
-                                          spiderBuilder();
-                                          pieBuilder();
-});
-d3.select("#add-DEF4").on("click",  () => {addFunctions["DEF4"]();
-                                          spiderBuilder();
-                                          pieBuilder();
-});
-d3.select("#del-DEF4").on("click",  () => {delFunctions["DEF4"]();
-                                          spiderBuilder();
-                                          pieBuilder();
-});
-d3.select("#add-MID1").on("click",  () => {addFunctions["MID1"]();
-                                          spiderBuilder();
-                                          pieBuilder();
-});
-d3.select("#del-MID1").on("click",  () => {delFunctions["MID1"]();
-                                          spiderBuilder();
-                                          pieBuilder();
-});
-d3.select("#add-MID2").on("click",  () => {addFunctions["MID2"]();
-                                          spiderBuilder();
-                                          pieBuilder();
-});
-d3.select("#del-MID2").on("click",  () => {delFunctions["MID2"]();
-                                          spiderBuilder();
-                                          pieBuilder();
-});
-d3.select("#add-MID3").on("click",  () => {addFunctions["MID3"]();
-                                          spiderBuilder();
-                                          pieBuilder();
-});
-d3.select("#del-MID3").on("click",  () => {delFunctions["MID3"]();
-                                          spiderBuilder();
-                                          pieBuilder();
-});
-d3.select("#add-MID4").on("click",  () => {addFunctions["MID4"]();
-                                          spiderBuilder();
-                                          pieBuilder();
-});
-d3.select("#del-MID4").on("click",  () => {delFunctions["MID4"]();
-                                          spiderBuilder();
-                                          pieBuilder();
-});
-d3.select("#add-FWD1").on("click",  () => {addFunctions["FWD1"]();
-                                          spiderBuilder();
-                                          pieBuilder();
-});
-d3.select("#del-FWD1").on("click",  () => {delFunctions["FWD1"]();
-                                          spiderBuilder();
-                                          pieBuilder();
-});
-d3.select("#add-FWD2").on("click",  () => {addFunctions["FWD2"]();
-                                          spiderBuilder();
-                                          pieBuilder();
-});
-d3.select("#del-FWD2").on("click",  () => {delFunctions["FWD2"]();
-                                          spiderBuilder();
-                                          pieBuilder();
-});
+d3.select("#add-DEF1").on("click", () => {addFunctions["DEF1"](); spiderBuilder(); pieBuilder();});
+d3.select("#del-DEF1").on("click",  () => {delFunctions["DEF1"](); spiderBuilder(); pieBuilder();});
+d3.select("#add-DEF2").on("click",  () => {addFunctions["DEF2"](); spiderBuilder(); pieBuilder();});
+d3.select("#del-DEF2").on("click",  () => {delFunctions["DEF2"](); spiderBuilder(); pieBuilder();});
+d3.select("#add-DEF3").on("click",  () => {addFunctions["DEF3"](); spiderBuilder(); pieBuilder();});
+d3.select("#del-DEF3").on("click",  () => {delFunctions["DEF3"](); spiderBuilder(); pieBuilder();});
+d3.select("#add-DEF4").on("click",  () => {addFunctions["DEF4"](); spiderBuilder(); pieBuilder();});
+d3.select("#del-DEF4").on("click",  () => {delFunctions["DEF4"](); spiderBuilder(); pieBuilder();});
+d3.select("#add-MID1").on("click",  () => {addFunctions["MID1"](); spiderBuilder(); pieBuilder();});
+d3.select("#del-MID1").on("click",  () => {delFunctions["MID1"](); spiderBuilder(); pieBuilder();});
+d3.select("#add-MID2").on("click",  () => {addFunctions["MID2"](); spiderBuilder(); pieBuilder();});
+d3.select("#del-MID2").on("click",  () => {delFunctions["MID2"](); spiderBuilder(); pieBuilder();});
+d3.select("#add-MID3").on("click",  () => {addFunctions["MID3"](); spiderBuilder(); pieBuilder();});
+d3.select("#del-MID3").on("click",  () => {delFunctions["MID3"](); spiderBuilder(); pieBuilder();});
+d3.select("#add-MID4").on("click",  () => {addFunctions["MID4"](); spiderBuilder(); pieBuilder();});
+d3.select("#del-MID4").on("click",  () => {delFunctions["MID4"](); spiderBuilder(); pieBuilder();});
+d3.select("#add-FWD1").on("click",  () => {addFunctions["FWD1"](); spiderBuilder(); pieBuilder();});
+d3.select("#del-FWD1").on("click",  () => {delFunctions["FWD1"](); spiderBuilder(); pieBuilder();});
+d3.select("#add-FWD2").on("click",  () => {addFunctions["FWD2"](); spiderBuilder(); pieBuilder();});
+d3.select("#del-FWD2").on("click",  () => {delFunctions["FWD2"](); spiderBuilder(); pieBuilder();});
 
 // Run that bitch
 fetch_all(init);
