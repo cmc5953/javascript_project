@@ -172,7 +172,8 @@ function spiderBuilder(){
             }
         },
         showlegend: false,
-        plot_bgcolor: "rgba(20,20,40,50)"
+        title: "Team Analysis",
+        paper_bgcolor:"rgba(1,1,1,0)"
     };
     
     Plotly.newPlot("spider-plot", data, layout,{responsive: true});
@@ -180,7 +181,7 @@ function spiderBuilder(){
 
 // DOUGHNUT PLOT FUNCTION /////////////////////////////////////////////////////////////////////////////////////
 function pieBuilder() {
-    var budget = 400;
+    var budget = 500;
     var names =[];
     var amounts =[];
     var amountSum = 0;
@@ -193,17 +194,37 @@ function pieBuilder() {
     if (remainder>0) {
         names.push("Remaining")
         amounts.push(remainder)
-        pie_trace = [{
-            labels : names,
-            values : amounts,
-            type : "pie"
-        }];
-        var layout = {
-            title: "Budget Analysis",
-        };
         var plot = d3.select("#pie-plot");
         plot.html("")
-        Plotly.newPlot("pie-plot", pie_trace, layout, {responsive: true});
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myDoughnutChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                datasets: [{
+                    data: amounts,
+                    backgroundColor: ["#0074D9", "#FF4136", "#2ECC40", "#FF851B", "#7FDBFF", "#B10DC9", "#FFDC00", "#001f3f", "#39CCCC", "#01FF70", "#85144b", "#F012BE", "#3D9970", "#111111", "#AAAAAA"] 
+                }],
+                labels: names
+            },
+            options: {
+                title: { 
+                    display: true,
+                    text: 'Budget Analysis',
+                    fontSize: 20
+                }
+            },
+        });
+        // pie_trace = [{
+        //     labels : names,
+        //     values : amounts,
+        //     type : "pie"
+        // }];
+        // var layout = {
+        //     title: "Budget Analysis",
+        // };
+        // var plot = d3.select("#pie-plot");
+        // plot.html("")
+        // Plotly.newPlot("pie-plot", pie_trace, layout, {responsive: true});
     } else {
         var plot = d3.select("#pie-plot");
         plot.html("")

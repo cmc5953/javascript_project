@@ -17,6 +17,10 @@
   min-height: 100%; */
 }
 
+.well {
+  background-color: rgba(240, 255, 236, 0.897);
+}
+
 .btn {
   height: 28px;
   margin-bottom: 2px;

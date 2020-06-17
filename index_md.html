@@ -16,7 +16,8 @@
     <div class="row">
       <div class="text-center">
         <h1 style="color: white;">Your Dream Team</h1>
-        <p style="color: white;">Select your favorite players to make up the best team, but be careful not to exceed the salary cap!</p>
+        <p style="color: white; font-size: large;">Select your favorite players to make up the best team, but be careful not to exceed the salary cap of $500M!</p>
+        <br>
       </div>
     </div>
     <!-- DROPDOWNS ------------------------------------------------------------------------------------->
@@ -24,7 +25,7 @@
 
       <div class="col-md-3 col-sm-6">
         <div class="well">
-          <h5>Goalkeepers:</h5>
+          <h4>Goalkeepers:</h4>
           <select class = "selection" id="selDatasetGK">
             <option value="Null" selected>Choose Player</option>
           </select>
@@ -33,7 +34,7 @@
 
       <div class="col-md-3 col-sm-6">
         <div class="well">
-          <h5>Defenders:</h5>
+          <h4>Defenders:</h4>
           <select class = "selection" id="selDatasetDEF">
             <option value="Null" selected>Choose Player</option>
           </select>
@@ -42,7 +43,7 @@
 
       <div class="col-md-3 col-sm-6">
         <div class="well">
-          <h5>Midfielders:</h5>
+          <h4>Midfielders:</h4>
           <select class = "selection" id="selDatasetMID">
             <option value="Null" selected>Choose Player</option>
           </select>
@@ -51,7 +52,7 @@
       
       <div class="col-md-3 col-sm-6">
         <div class="well">
-          <h5>Forwards:</h5>
+          <h4>Forwards:</h4>
           <select class = "selection" id="selDatasetFWD">
             <option value="Null" selected>Choose Player</option>
           </select>
@@ -59,6 +60,7 @@
       </div>
 
     </div>
+    
     <!-- INFO, BUTTONS, TABLE ------------------------------------------------------------------------->
     <div class="row">
       
@@ -66,15 +68,17 @@
       <div class="col-md-5 col-sm-9">
         <div class="well">
           <div id="pie-plot"></div>
+          <canvas id="myChart" width="300" height="320"></canvas>
         </div>
       </div>
 
       <!-- INFO -->
       <div class="col-md-2 col-sm-3">
         <div class="well">
-          <h3>Player Info</h3>
+          <h4>Player Info</h4>
           <div id="playerInfo">
-            <dl>Select a player</dl>
+            <dl>Select a player<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br></dl>
+            <br><br>
           </div>
         </div>
       </div>
@@ -193,6 +197,12 @@
     </div>
   
   </div>
+
+  <!-- CANVAS -->
+  <!-- <canvas id="myChart"></canvas> -->
+  
+  <!-- CHART -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 
   <!-- D3 -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
