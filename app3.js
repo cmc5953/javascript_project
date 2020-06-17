@@ -38,6 +38,8 @@ function init() {
     FWDdata.forEach(element => {
         dropdownMenu.append("option").attr("value", element.Name).text(element.Name);
     });
+    pieBuilder();
+    spiderBuilder();
 };
 
 // GETDATA FUNCTIONS /////////////////////////////////////////////////////////////////////////////////////////
@@ -56,19 +58,19 @@ for(let i = 0; i < selArr.length; i++){
         // Use D3.json() to fetch and read the JSON file
         var filtered_data = soccerData.filter(player => player.Name === subject_selection);
         // Finally, select the unordered list element
-        var list = d3.select("ul"); 
+        var list = d3.select("dl"); 
         // remove any info from the list
         list.html("");
         // THIS IF STATEMENT CAN BE REMOVED IF WE AREN'T USING THE FLAG AND PLAYER IMAGES
         Object.keys(filtered_data[0]).forEach(attribute => {
-            if (attribute == "//Position" ||
-                attribute == "Flag" ||
-                attribute == "Photo") { 
+            if (attribute == "Flag" || attribute == "Photo") { 
                 // pass
             } else {
             // append info to the unordered list
-            list.append("li")
-                .text(`${attribute} --- ${filtered_data[0][attribute]}`)
+            list.append("dt")
+                .text(`${attribute}`)
+            list.append("dd")
+                .text(filtered_data[0][attribute])
             }
         });
     };
@@ -89,20 +91,24 @@ var spider_dict = {};
 for(let i = 0; i < posArr.length; i++){
     addFunctions[posArr[i]] = function(){
         var pos = posArr[i]
-        var playerpos = d3.select("li:nth-child(7)").text().split(" --- ")[1]
+        var playerpos = d3.select("dd:nth-child(14)").text()
         if (pos.substring(0,2)===playerpos.substring(0,2)) {
             var trow = d3.select(`#${pos}`);
             spider_dict[pos] = {};
             trow.html("");
             var initialcell = trow.append("td");
             initialcell.text(pos);
-            d3.selectAll("li").each(function(d,i){
+            var attributes = [];
+            d3.selectAll("dt").each(function(d,i){
                 var text = d3.select(this).text();
-                var attribute=text.split(" --- ")[0];
-                var skill=text.split(" --- ")[1];
+                attributes.push(text);
+            })
+            d3.selectAll("dd").each(function(d,i){
+                var text = d3.select(this).text();
+                var skill=text;
                 var cell=trow.append("td");
                 cell.text(skill);
-                spider_dict[pos][attribute] = skill;
+                spider_dict[pos][attributes[i]] = skill;
             })
             pieBuilder();
             spiderBuilder();
@@ -166,9 +172,10 @@ function spiderBuilder(){
             }
         },
         showlegend: false,
+        plot_bgcolor: "rgba(20,20,40,50)"
     };
     
-    Plotly.newPlot("spider-plot", data, layout);
+    Plotly.newPlot("spider-plot", data, layout,{responsive: true});
 };
 
 // DOUGHNUT PLOT FUNCTION /////////////////////////////////////////////////////////////////////////////////////
@@ -196,7 +203,7 @@ function pieBuilder() {
         };
         var plot = d3.select("#pie-plot");
         plot.html("")
-        Plotly.newPlot("pie-plot", pie_trace, layout);
+        Plotly.newPlot("pie-plot", pie_trace, layout, {responsive: true});
     } else {
         var plot = d3.select("#pie-plot");
         plot.html("")
