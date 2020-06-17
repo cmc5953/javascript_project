@@ -207,7 +207,7 @@ function pieBuilder() {
 
 // When the user selects a new player from any of the dropdowns,
 // we call getData() which will populate the information table
-d3.selectAll("#selDatasetGK").on("click", getDataFunctions["#selDatasetGK"]);
+d3.selectAll("#selDatasetGK").on("change", getDataFunctions["#selDatasetGK"]);
 d3.selectAll("#selDatasetDEF").on("change", getDataFunctions["#selDatasetDEF"]);
 d3.selectAll("#selDatasetMID").on("change", getDataFunctions["#selDatasetMID"]);
 d3.selectAll("#selDatasetFWD").on("change", getDataFunctions["#selDatasetFWD"]);
