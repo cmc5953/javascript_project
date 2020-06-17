@@ -1,0 +1,38 @@
+/* The styles for the parallax */
+.hero {
+  background-image: url('background.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  /* min-width: 100%;
+  position: relative; 
+  top: 0; 
+  left: 0; 
+  right: 0; 
+  bottom: 0; 
+  margin: 0;
+  opacity: 0.8; 
+  min-width: 100%; 
+  min-height: 100%; */
+}
+
+table {
+  width: 100%;
+}
+
+.table-class {
+  font-size: x-small;
+}
+
+th, tr {
+  text-align: center;
+}
+
+td {
+  text-align: center;
+}
+
+h1 {
+  font-style: italic;
+}
