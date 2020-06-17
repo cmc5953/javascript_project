@@ -68,7 +68,7 @@ for(let i = 0; i < selArr.length; i++){
             } else {
             // append info to the unordered list
             list.append("li")
-                .text(`${attribute}\t ${filtered_data[0][attribute]}`)
+                .text(`${attribute} --- ${filtered_data[0][attribute]}`)
             }
         });
     };
@@ -89,19 +89,22 @@ var spider_dict = {};
 for(let i = 0; i < posArr.length; i++){
     addFunctions[posArr[i]] = function(){
         var pos = posArr[i]
-        var trow = d3.select(`#${pos}`);
-        spider_dict[pos] = {};
-        trow.html("");
-        var initialcell = trow.append("td");
-        initialcell.text(pos);
-        d3.selectAll("li").each(function(d,i){
-            var text = d3.select(this).text();
-            var attribute=text.split("\t")[0];
-            var skill=text.split("\t")[1];
-            var cell=trow.append("td");
-            cell.text(skill);
-            spider_dict[pos][attribute] = skill;
-        })
+        var playerpos = d3.select("li:nth-child(7)").text().split(" --- ")[1]
+        if (pos.substring(0,2)===playerpos.substring(0,2)) {
+            var trow = d3.select(`#${pos}`);
+            spider_dict[pos] = {};
+            trow.html("");
+            var initialcell = trow.append("td");
+            initialcell.text(pos);
+            d3.selectAll("li").each(function(d,i){
+                var text = d3.select(this).text();
+                var attribute=text.split(" --- ")[0];
+                var skill=text.split(" --- ")[1];
+                var cell=trow.append("td");
+                cell.text(skill);
+                spider_dict[pos][attribute] = skill;
+            })
+        }
     };
 }
 
@@ -119,7 +122,7 @@ for(let i = 0; i < posArr.length; i++){
 
 // SPIDER PLOT FUNCTION /////////////////////////////////////////////////////////////////////////////////////
 function spiderBuilder(){
-    var positions = [" FWD"," MID", " DEF", " GK"];
+    var positions = ["FWD","MID", "DEF", "GK"];
     overall_list = [];
     positions.forEach(position => {
         var total = 0
@@ -204,7 +207,7 @@ function pieBuilder() {
 
 // When the user selects a new player from any of the dropdowns,
 // we call getData() which will populate the information table
-d3.selectAll("#selDatasetGK").on("change", getDataFunctions["#selDatasetGK"]);
+d3.selectAll("#selDatasetGK").on("click", getDataFunctions["#selDatasetGK"]);
 d3.selectAll("#selDatasetDEF").on("change", getDataFunctions["#selDatasetDEF"]);
 d3.selectAll("#selDatasetMID").on("change", getDataFunctions["#selDatasetMID"]);
 d3.selectAll("#selDatasetFWD").on("change", getDataFunctions["#selDatasetFWD"]);
