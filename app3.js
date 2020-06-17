@@ -119,6 +119,8 @@ for(let i = 0; i < posArr.length; i++){
         var initialcell = trow.append("td");
         initialcell.text(pos);
         delete spider_dict[pos];
+        pieBuilder();
+        spiderBuilder();
     };
 }
 
